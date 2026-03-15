@@ -1,34 +1,32 @@
-import express from "express"
-import cors from "cors"
-import rateLimit from "express-rate-limit"
+/**
+ * BountyScope API Server
+ */
 
-import analyzeRoute from "./routes/analyze.js"
-import reportRoute from "./routes/report.js"
+import express from "express";
+import cors from "cors";
 
-const app = express()
+import analyzeRoutes from "./routes/analyze.js";
+import reportRoutes from "./routes/report.js";
+import parameterRoutes from "./routes/parameters.js";
 
-app.use(cors())
+const app = express();
 
-app.use(express.json({
-  limit: "1mb"
-}))
-
-const limiter = rateLimit({
-  windowMs: 60 * 1000,
-  max: 30
-})
-
-app.use(limiter)
-
-app.use("/api/analyze", analyzeRoute)
-app.use("/api/report", reportRoute)
+app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("BountyScope API running")
-})
+  res.json({
+    name: "BountyScope API",
+    status: "running"
+  });
+});
 
-const PORT = 5000
+app.use("/api/analyze", analyzeRoutes);
+app.use("/api/report", reportRoutes);
+app.use("/api/parameters", parameterRoutes);
+
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`BountyScope API running on port ${PORT}`)
-})
+  console.log(`BountyScope API running on port ${PORT}`);
+});
