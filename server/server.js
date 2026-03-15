@@ -1,13 +1,10 @@
-/**
- * BountyScope API Server
- */
-
 import express from "express";
 import cors from "cors";
 
 import analyzeRoutes from "./routes/analyze.js";
-import reportRoutes from "./routes/report.js";
 import parameterRoutes from "./routes/parameters.js";
+import payloadRoutes from "./routes/payloads.js";
+import jsScannerRoutes from "./routes/jsScanner.js";
 
 const app = express();
 
@@ -22,8 +19,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/analyze", analyzeRoutes);
-app.use("/api/report", reportRoutes);
 app.use("/api/parameters", parameterRoutes);
+app.use("/api/payloads", payloadRoutes);
+app.use("/api/js-scan", jsScannerRoutes);
 
 const PORT = process.env.PORT || 5000;
 
