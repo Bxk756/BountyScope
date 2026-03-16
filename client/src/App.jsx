@@ -1,6 +1,8 @@
 import React, { useState } from "react"
+
 import Analyze from "./pages/Analyze.jsx"
 import CVSS from "./pages/CVSS.jsx"
+import JWT from "./pages/JWT.jsx"
 import Reports from "./pages/Reports.jsx"
 
 export default function App() {
@@ -30,6 +32,10 @@ export default function App() {
           CVSS
         </button>
 
+        <button onClick={() => setTab("jwt")}>
+          JWT
+        </button>
+
         <button onClick={() => setTab("reports")}>
           Reports
         </button>
@@ -40,6 +46,7 @@ export default function App() {
 
         {tab === "analyze" && <Analyze />}
         {tab === "cvss" && <CVSS />}
+        {tab === "jwt" && <JWT />}
         {tab === "reports" && <Reports />}
 
       </div>
