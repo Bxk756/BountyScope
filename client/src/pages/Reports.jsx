@@ -1,13 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Reports() {
 
-  const [title,setTitle] = useState("");
-  const [endpoint,setEndpoint] = useState("");
-  const [payload,setPayload] = useState("");
-  const [severity,setSeverity] = useState("Medium");
-
-  const [report,setReport] = useState("");
+  const [title, setTitle] = useState("");
+  const [endpoint, setEndpoint] = useState("");
+  const [payload, setPayload] = useState("");
+  const [severity, setSeverity] = useState("Medium");
+  const [report, setReport] = useState("");
 
   function generateReport(){
 
@@ -31,7 +30,6 @@ Validate user input and sanitize parameters.
 `;
 
     setReport(output);
-
   }
 
   return(
@@ -41,26 +39,26 @@ Validate user input and sanitize parameters.
       <h2>Bug Bounty Report Generator</h2>
 
       <input
-      placeholder="Vulnerability Title"
-      value={title}
-      onChange={(e)=>setTitle(e.target.value)}
+        placeholder="Vulnerability Title"
+        value={title}
+        onChange={(e)=>setTitle(e.target.value)}
       />
 
       <input
-      placeholder="Affected Endpoint"
-      value={endpoint}
-      onChange={(e)=>setEndpoint(e.target.value)}
+        placeholder="Affected Endpoint"
+        value={endpoint}
+        onChange={(e)=>setEndpoint(e.target.value)}
       />
 
       <input
-      placeholder="Payload Used"
-      value={payload}
-      onChange={(e)=>setPayload(e.target.value)}
+        placeholder="Payload Used"
+        value={payload}
+        onChange={(e)=>setPayload(e.target.value)}
       />
 
       <select
-      value={severity}
-      onChange={(e)=>setSeverity(e.target.value)}
+        value={severity}
+        onChange={(e)=>setSeverity(e.target.value)}
       >
         <option>Low</option>
         <option>Medium</option>
@@ -81,5 +79,4 @@ Validate user input and sanitize parameters.
     </div>
 
   );
-
 }
