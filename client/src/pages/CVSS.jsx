@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function CVSS() {
 
@@ -30,47 +30,52 @@ export default function CVSS() {
   }
 
   return (
-    <div className="panel">
 
-      <h2>CVSS v3.1 Calculator</h2>
+    <div>
 
-      <h3>Attack Vector</h3>
+      <h2>CVSS Calculator</h2>
 
-      <select onChange={(e)=>setAV(e.target.value)}>
+      <p>Attack Vector</p>
+
+      <select value={AV} onChange={(e)=>setAV(e.target.value)}>
         <option value="N">Network</option>
         <option value="A">Adjacent</option>
         <option value="L">Local</option>
         <option value="P">Physical</option>
       </select>
 
-      <h3>Attack Complexity</h3>
+      <p>Attack Complexity</p>
 
-      <select onChange={(e)=>setAC(e.target.value)}>
+      <select value={AC} onChange={(e)=>setAC(e.target.value)}>
         <option value="L">Low</option>
         <option value="H">High</option>
       </select>
 
-      <h3>Privileges Required</h3>
+      <p>Privileges Required</p>
 
-      <select onChange={(e)=>setPR(e.target.value)}>
+      <select value={PR} onChange={(e)=>setPR(e.target.value)}>
         <option value="N">None</option>
         <option value="L">Low</option>
         <option value="H">High</option>
       </select>
 
-      <h3>User Interaction</h3>
+      <p>User Interaction</p>
 
-      <select onChange={(e)=>setUI(e.target.value)}>
+      <select value={UI} onChange={(e)=>setUI(e.target.value)}>
         <option value="N">None</option>
         <option value="R">Required</option>
       </select>
 
+      <br />
+      <br />
+
       <button onClick={calculateScore}>
-        Calculate Score
+        Calculate
       </button>
 
-      <h2>Score: {score}</h2>
+      <h3>Score: {score}</h3>
 
     </div>
+
   );
 }
