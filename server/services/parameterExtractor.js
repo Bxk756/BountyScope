@@ -1,40 +1,34 @@
-/**
- * BountyScope - Parameter Extraction Engine
- * Extracts parameters from HTTP requests for vulnerability testing
- */
+export function extractParameters(input = "") {
 
-export function extractParameters(requestText) {
-  const parameters = new Set();
+  const params = []
 
-  if (!requestText) return [];
+  if (!input) return params
 
-  const lines = requestText.split("\n");
-  const requestLine = lines[0] || "";
+  try {
 
-  // Extract query parameters from URL
-  const queryMatch = requestLine.match(/\?(.*)\sHTTP/);
-
-  if (queryMatch) {
-    const queryParams = queryMatch[1].split("&");
-
-    queryParams.forEach(param => {
-      const [key] = param.split("=");
-      if (key) parameters.add(key.trim());
-    });
-  }
-
-  // Extract JSON body parameters
-  const bodyMatch = requestText.match(/\{[\s\S]*\}/);
-
-  if (bodyMatch) {
-    try {
-      const json = JSON.parse(bodyMatch[0]);
-
-      Object.keys(json).forEach(key => parameters.add(key));
-    } catch (err) {
-      // Ignore invalid JSON bodies
+    // Works for full URL
+    if (input.startsWith("http")) {
+      const url = new URL(input)
+      url.searchParams.forEach((_, key) => {
+        params.push(key)
+      })
+      return params
     }
+
+    // Works for raw HTTP
+    const firstLine = input.split("\n")[0]
+    const match = firstLine.match(/\?(.*?)\s/)
+
+    if (match) {
+      match[1].split("&").forEach(p => {
+        const [key] = p.split("=")
+        if (key) params.push(key)
+      })
+    }
+
+  } catch (err) {
+    console.error("Extractor error:", err.message)
   }
 
-  return [...parameters];
+  return params
 }

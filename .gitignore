@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+
+# env
+.env
+server/.env
+
+# logs
+npm-debug.log*
+
+# vite
+client/node_modules/
+client/dist/
+.vite/
+
+# mac/linux
+.DS_Store
+
+# build
+dist/
+build/
+
+# misc
+*.log

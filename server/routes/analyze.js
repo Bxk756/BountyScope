@@ -1,10 +1,11 @@
 import express from "express"
 import { analyzeRequest } from "../services/vulnerabilityScanner.js"
 import { generatePayloads } from "../services/payloadEngine.js"
+import { protect } from "../middleware/auth.js"
 
 const router = express.Router()
 
-router.post("/", (req, res) => {
+router.post("/", protect, (req, res) => {
 
   const request = req.body.request || ""
   const response = req.body.response || ""
@@ -12,7 +13,6 @@ router.post("/", (req, res) => {
   try {
 
     const result = analyzeRequest(request, response)
-
     const payloads = generatePayloads(result.parameters)
 
     res.json({
