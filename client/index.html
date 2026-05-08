@@ -1,718 +1,945 @@
+<!-- client/index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>BountyScope</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-  background:#02050b;
-  color:white;
-  font-family:'Inter',sans-serif;
-  overflow-x:hidden;
-}
-
-/* BACKGROUND */
-
-.bg-grid{
-  position:fixed;
-  inset:0;
-  background:
-  linear-gradient(rgba(0,119,255,0.05) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(0,119,255,0.05) 1px, transparent 1px);
-
-  background-size:40px 40px;
-  z-index:-2;
-}
-
-.glow{
-  position:fixed;
-  width:700px;
-  height:700px;
-  background:radial-gradient(circle, rgba(0,119,255,0.25), transparent 70%);
-  top:-250px;
-  right:-200px;
-  z-index:-1;
-}
-
-/* NAVBAR */
-
-.nav{
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:30px 60px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-  backdrop-filter:blur(12px);
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.logo img{
-  width:42px;
-}
-
-.logo h1{
-  font-size:28px;
-  font-family:'Orbitron',sans-serif;
-  letter-spacing:3px;
-}
-
-.nav-links{
-  display:flex;
-  gap:30px;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:#cfd8e3;
-  font-size:16px;
-  transition:.2s;
-}
-
-.nav-links a:hover{
-  color:#1d8fff;
-}
-
-.nav-btn{
-  padding:14px 24px;
-  background:#147dff;
-  border:none;
-  border-radius:10px;
-  color:white;
-  cursor:pointer;
-  font-weight:600;
-  transition:.2s;
-}
-
-.nav-btn:hover{
-  background:#3395ff;
-}
-
-/* HERO */
-
-.hero{
-  padding:120px 60px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:60px;
-}
-
-.hero-left{
-  max-width:700px;
-}
-
-.hero-title{
-  font-size:82px;
-  line-height:1.05;
-  font-weight:700;
-  margin-bottom:30px;
-  font-family:'Orbitron',sans-serif;
-}
-
-.hero-title span{
-  color:#147dff;
-}
-
-.hero-sub{
-  font-size:24px;
-  line-height:1.8;
-  color:#a5b3c7;
-  margin-bottom:40px;
-}
-
-.hero-buttons{
-  display:flex;
-  gap:20px;
-}
-
-.primary-btn{
-  padding:18px 34px;
-  background:#147dff;
-  border:none;
-  border-radius:12px;
-  color:white;
-  font-size:18px;
-  cursor:pointer;
-  font-weight:600;
-}
-
-.secondary-btn{
-  padding:18px 34px;
-  background:transparent;
-  border:1px solid #147dff;
-  border-radius:12px;
-  color:#147dff;
-  font-size:18px;
-  cursor:pointer;
-  font-weight:600;
-}
-
-/* HERO RADAR */
-
-.hero-right{
-  flex:1;
-  display:flex;
-  justify-content:center;
-}
-
-.radar{
-  width:420px;
-  height:420px;
-  border:2px solid rgba(20,125,255,0.3);
-  border-radius:50%;
-  position:relative;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  box-shadow:0 0 80px rgba(20,125,255,0.25);
-}
-
-.radar::before{
-  content:"";
-  position:absolute;
-  width:300px;
-  height:300px;
-  border:1px solid rgba(20,125,255,0.3);
-  border-radius:50%;
-}
-
-.radar::after{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  border:1px solid rgba(20,125,255,0.3);
-  border-radius:50%;
-}
-
-.radar-logo{
-  font-size:120px;
-  color:#147dff;
-  font-family:'Orbitron',sans-serif;
-  font-weight:700;
-}
-
-/* STATS */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:24px;
-  padding:0 60px 80px;
-}
-
-.stat-card{
-  background:#07111f;
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:20px;
-  padding:30px;
-}
-
-.stat-card h2{
-  font-size:46px;
-  margin-bottom:10px;
-}
-
-.stat-card p{
-  color:#91a0b8;
-  font-size:18px;
-}
-
-/* FEATURES */
-
-.section{
-  padding:100px 60px;
-}
-
-.section-title{
-  font-size:54px;
-  margin-bottom:20px;
-  font-family:'Orbitron',sans-serif;
-}
-
-.section-sub{
-  font-size:22px;
-  color:#9fb0c7;
-  max-width:900px;
-  line-height:1.8;
-}
-
-.features{
-  margin-top:60px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:30px;
-}
-
-.feature-card{
-  background:#07111f;
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:24px;
-  padding:35px;
-  transition:.25s;
-}
-
-.feature-card:hover{
-  transform:translateY(-6px);
-  border-color:#147dff;
-}
-
-.feature-card h3{
-  font-size:28px;
-  margin-bottom:18px;
-}
-
-.feature-card p{
-  color:#9db0c7;
-  line-height:1.8;
-  font-size:18px;
-}
-
-/* PRICING */
-
-.pricing{
-  margin-top:60px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-
-.plan{
-  background:#07111f;
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:24px;
-  padding:40px;
-}
-
-.plan h2{
-  font-size:38px;
-  margin-bottom:10px;
-}
-
-.price{
-  font-size:58px;
-  color:#147dff;
-  margin-bottom:20px;
-  font-weight:700;
-}
-
-.plan ul{
-  list-style:none;
-  margin-top:20px;
-}
-
-.plan ul li{
-  margin-bottom:18px;
-  color:#9db0c7;
-  font-size:18px;
-}
-
-.plan button{
-  margin-top:30px;
-  width:100%;
-  padding:18px;
-  border:none;
-  border-radius:12px;
-  background:#147dff;
-  color:white;
-  font-size:18px;
-  cursor:pointer;
-}
-
-/* CTA */
-
-.cta{
-  text-align:center;
-  padding:120px 60px;
-}
-
-.cta h1{
-  font-size:70px;
-  margin-bottom:30px;
-  font-family:'Orbitron',sans-serif;
-}
-
-.cta p{
-  font-size:24px;
-  color:#aab7ca;
-  margin-bottom:40px;
-}
-
-/* FOOTER */
-
-.footer{
-  border-top:1px solid rgba(255,255,255,0.08);
-  padding:60px;
-  text-align:center;
-}
-
-.footer h2{
-  font-size:30px;
-  margin-bottom:20px;
-  font-family:'Orbitron',sans-serif;
-}
-
-.footer p{
-  color:#8fa2bc;
-  font-size:18px;
-  line-height:1.8;
-}
-
-/* MOBILE */
-
-@media(max-width:1000px){
-
-  .hero{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .hero-title{
-    font-size:54px;
-  }
-
-  .hero-buttons{
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-
-  .nav{
-    flex-direction:column;
-    gap:20px;
-  }
-
-}
-
-</style>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>BountyScope</title>
+
+  <meta
+    name="description"
+    content="BountyScope — AI-Assisted Offensive Security Platform built for ethical hackers by Swarm Shield LLC."
+  />
+
+  <meta
+    name="keywords"
+    content="bug bounty, cybersecurity, offensive security, ethical hacking, vulnerability scanner, AI security"
+  />
+
+  <meta name="theme-color" content="#020617" />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+
+      background:
+        radial-gradient(circle at top left, rgba(0, 119, 255, 0.15), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(0, 255, 170, 0.08), transparent 30%),
+        #020617;
+
+      color: white;
+
+      font-family: "Inter", sans-serif;
+
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: 0.25s ease;
+    }
+
+    .grid-bg {
+
+      position: fixed;
+
+      inset: 0;
+
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+      background-size: 50px 50px;
+
+      z-index: -2;
+    }
+
+    .glow {
+
+      position: fixed;
+
+      width: 700px;
+      height: 700px;
+
+      background: radial-gradient(circle, rgba(0,119,255,0.12), transparent 70%);
+
+      top: -250px;
+      right: -200px;
+
+      z-index: -1;
+    }
+
+    header {
+
+      width: 100%;
+
+      padding: 28px 8%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+
+      position: sticky;
+      top: 0;
+
+      backdrop-filter: blur(16px);
+
+      background: rgba(2, 6, 23, 0.82);
+
+      z-index: 999;
+    }
+
+    .logo {
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+
+      width: 52px;
+      height: 52px;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(135deg, #0066ff, #00e0ff);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 24px;
+      font-weight: 800;
+
+      box-shadow:
+        0 0 40px rgba(0,119,255,0.35);
+    }
+
+    .logo h1 {
+
+      font-family: "Orbitron", sans-serif;
+
+      font-size: 30px;
+
+      letter-spacing: 5px;
+    }
+
+    nav {
+
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    nav a {
+
+      color: rgba(255,255,255,0.82);
+
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #00c8ff;
+    }
+
+    .hero {
+
+      width: 100%;
+
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 120px 8%;
+      gap: 60px;
+    }
+
+    .hero-left {
+      max-width: 760px;
+    }
+
+    .hero-tag {
+
+      display: inline-block;
+
+      margin-bottom: 24px;
+
+      padding: 10px 18px;
+
+      border-radius: 999px;
+
+      background: rgba(0,119,255,0.12);
+
+      border: 1px solid rgba(0,119,255,0.35);
+
+      color: #66d9ff;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      letter-spacing: 1px;
+    }
+
+    .hero h2 {
+
+      font-family: "Orbitron", sans-serif;
+
+      font-size: 82px;
+
+      line-height: 1.04;
+
+      margin-bottom: 32px;
+
+      letter-spacing: 2px;
+    }
+
+    .hero h2 span {
+      color: #0077ff;
+    }
+
+    .hero p {
+
+      font-size: 22px;
+
+      line-height: 1.8;
+
+      color: rgba(255,255,255,0.72);
+
+      margin-bottom: 42px;
+    }
+
+    .hero-buttons {
+
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn {
+
+      padding: 18px 34px;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(135deg, #0066ff, #00c8ff);
+
+      color: white;
+
+      font-size: 17px;
+      font-weight: 700;
+
+      box-shadow:
+        0 0 30px rgba(0,119,255,0.4);
+    }
+
+    .primary-btn:hover {
+
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 0 45px rgba(0,119,255,0.6);
+    }
+
+    .secondary-btn {
+
+      padding: 18px 34px;
+
+      border-radius: 14px;
+
+      border: 1px solid rgba(255,255,255,0.14);
+
+      background: rgba(255,255,255,0.04);
+
+      color: white;
+
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .secondary-btn:hover {
+
+      border-color: #0077ff;
+
+      background: rgba(0,119,255,0.08);
+    }
+
+    .hero-right {
+
+      flex: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radar {
+
+      width: 480px;
+      height: 480px;
+
+      border-radius: 50%;
+
+      border: 2px solid rgba(0,119,255,0.28);
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      animation: pulse 4s infinite ease-in-out;
+    }
+
+    .radar::before,
+    .radar::after {
+
+      content: "";
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(0,119,255,0.18);
+    }
+
+    .radar::before {
+      width: 360px;
+      height: 360px;
+    }
+
+    .radar::after {
+      width: 240px;
+      height: 240px;
+    }
+
+    .radar-logo {
+
+      width: 180px;
+      height: 180px;
+
+      border-radius: 36px;
+
+      background:
+        linear-gradient(135deg, #0f172a, #020617);
+
+      border: 2px solid rgba(0,119,255,0.35);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 86px;
+      font-weight: 900;
+
+      font-family: "Orbitron", sans-serif;
+
+      color: white;
+
+      box-shadow:
+        0 0 50px rgba(0,119,255,0.3);
+    }
+
+    @keyframes pulse {
+
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.03);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .features {
+
+      padding: 120px 8%;
+    }
+
+    .section-title {
+
+      font-family: "Orbitron", sans-serif;
+
+      font-size: 54px;
+
+      margin-bottom: 24px;
+    }
+
+    .section-sub {
+
+      color: rgba(255,255,255,0.65);
+
+      font-size: 20px;
+
+      line-height: 1.8;
+
+      max-width: 900px;
+
+      margin-bottom: 60px;
+    }
+
+    .feature-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+      gap: 28px;
+    }
+
+    .feature-card {
+
+      padding: 34px;
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.04),
+          rgba(255,255,255,0.02)
+        );
+
+      border: 1px solid rgba(255,255,255,0.08);
+
+      transition: 0.3s ease;
+    }
+
+    .feature-card:hover {
+
+      transform: translateY(-6px);
+
+      border-color: rgba(0,119,255,0.4);
+
+      box-shadow:
+        0 0 40px rgba(0,119,255,0.18);
+    }
+
+    .feature-card h3 {
+
+      font-size: 26px;
+
+      margin-bottom: 18px;
+
+      color: #00c8ff;
+    }
+
+    .feature-card p {
+
+      color: rgba(255,255,255,0.72);
+
+      line-height: 1.8;
+
+      font-size: 17px;
+    }
+
+    .pricing {
+
+      padding: 120px 8%;
+    }
+
+    .pricing-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(300px, 1fr));
+
+      gap: 30px;
+
+      margin-top: 70px;
+    }
+
+    .plan {
+
+      padding: 44px;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.05),
+          rgba(255,255,255,0.02)
+        );
+
+      border: 1px solid rgba(255,255,255,0.08);
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+    .plan.popular {
+
+      border: 1px solid rgba(0,119,255,0.45);
+
+      box-shadow:
+        0 0 60px rgba(0,119,255,0.2);
+    }
+
+    .plan h3 {
+
+      font-size: 34px;
+
+      margin-bottom: 14px;
+    }
+
+    .price {
+
+      font-size: 58px;
+      font-weight: 800;
+
+      margin-bottom: 30px;
+
+      color: #00c8ff;
+    }
+
+    .price span {
+
+      font-size: 18px;
+
+      color: rgba(255,255,255,0.55);
+    }
+
+    .plan ul {
+
+      list-style: none;
+
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+
+      margin-bottom: 40px;
+    }
+
+    .plan ul li {
+
+      color: rgba(255,255,255,0.78);
+
+      font-size: 17px;
+    }
+
+    .footer {
+
+      padding: 70px 8%;
+
+      border-top: 1px solid rgba(255,255,255,0.08);
+
+      margin-top: 120px;
+
+      text-align: center;
+    }
+
+    .footer h4 {
+
+      font-family: "Orbitron", sans-serif;
+
+      font-size: 30px;
+
+      margin-bottom: 20px;
+    }
+
+    .footer p {
+
+      color: rgba(255,255,255,0.62);
+
+      font-size: 18px;
+
+      line-height: 1.8;
+    }
+
+    @media(max-width: 1100px) {
+
+      .hero {
+
+        flex-direction: column;
+
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero h2 {
+        font-size: 64px;
+      }
+
+      .radar {
+        width: 360px;
+        height: 360px;
+      }
+    }
+
+    @media(max-width: 700px) {
+
+      header {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero h2 {
+        font-size: 48px;
+      }
+
+      .section-title {
+        font-size: 40px;
+      }
+
+      .price {
+        font-size: 42px;
+      }
+    }
+
+  </style>
+
 </head>
 
 <body>
 
-<div class="bg-grid"></div>
-<div class="glow"></div>
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
 
-<!-- NAV -->
+  <header>
 
-<div class="nav">
+    <div class="logo">
 
-  <div class="logo">
-    <h1>BOUNTYSCOPE</h1>
-  </div>
+      <div class="logo-icon">
+        S
+      </div>
 
-  <div class="nav-links">
-    <a href="#">Platform</a>
-    <a href="#">Solutions</a>
-    <a href="#">Resources</a>
-    <a href="#">About</a>
-    <a href="#">Pricing</a>
-  </div>
+      <h1>BOUNTYSCOPE</h1>
 
-  <button class="nav-btn">
-    Request Access
-  </button>
+    </div>
 
-</div>
+    <nav>
 
-<!-- HERO -->
+      <a href="#features">Platform</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/about.html">About</a>
 
-<section class="hero">
+    </nav>
 
-  <div class="hero-left">
+  </header>
 
-    <h1 class="hero-title">
-      SEE <span>MORE.</span><br>
-      FIND <span>MORE.</span><br>
-      PROVE <span>MORE.</span>
-    </h1>
+  <section class="hero">
 
-    <p class="hero-sub">
-      AI-assisted offensive security platform built for ethical hackers.
-      Analyze vulnerabilities, validate exploits, generate payloads,
-      and automate reconnaissance workflows from one unified platform.
+    <div class="hero-left">
+
+      <div class="hero-tag">
+        AI-Assisted Offensive Security Platform
+      </div>
+
+      <h2>
+        SEE <span>MORE.</span><br />
+        FIND <span>MORE.</span><br />
+        PROVE <span>MORE.</span>
+      </h2>
+
+      <p>
+
+        BountyScope is built for ethical hackers and security researchers.
+        Discover vulnerabilities, analyze endpoints, validate exploits,
+        and automate offensive security workflows with AI-assisted tooling.
+
+        <br /><br />
+
+        Built by Swarm Shield LLC.
+
+      </p>
+
+      <div class="hero-buttons">
+
+        <button class="primary-btn">
+          Launch Platform
+        </button>
+
+        <button class="secondary-btn">
+          View Dashboard
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="hero-right">
+
+      <div class="radar">
+
+        <div class="radar-logo">
+          BS
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="features" id="features">
+
+    <h2 class="section-title">
+      Offensive Security Platform
+    </h2>
+
+    <p class="section-sub">
+
+      Built for modern vulnerability research, endpoint intelligence,
+      replay validation, exploit analysis, and AI-guided offensive workflows.
+
     </p>
 
-    <div class="hero-buttons">
+    <div class="feature-grid">
 
-      <button class="primary-btn">
-        Start Free
-      </button>
+      <div class="feature-card">
 
-      <button class="secondary-btn">
-        Explore Platform
-      </button>
+        <h3>AuthZ Flaw Detection</h3>
 
-    </div>
+        <p>
+          Detect IDOR and BOLA vulnerabilities using replay analysis,
+          parameter mutation, and response fingerprinting.
+        </p>
 
-  </div>
-
-  <div class="hero-right">
-
-    <div class="radar">
-      <div class="radar-logo">BS</div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- STATS -->
-
-<section class="stats">
-
-  <div class="stat-card">
-    <h2>12,834</h2>
-    <p>Total Requests Analyzed</p>
-  </div>
-
-  <div class="stat-card">
-    <h2>1,248</h2>
-    <p>Vulnerabilities Detected</p>
-  </div>
-
-  <div class="stat-card">
-    <h2>317</h2>
-    <p>Authorization Flaws Found</p>
-  </div>
-
-  <div class="stat-card">
-    <h2>99.9%</h2>
-    <p>Platform Availability</p>
-  </div>
-
-</section>
-
-<!-- FEATURES -->
-
-<section class="section">
-
-  <h1 class="section-title">
-    Offensive Security Platform
-  </h1>
-
-  <p class="section-sub">
-    BountyScope combines AI-assisted analysis, payload automation,
-    replay validation, and vulnerability intelligence into one platform
-    designed specifically for modern ethical hackers.
-  </p>
-
-  <div class="features">
-
-    <div class="feature-card">
-      <h3>Authorization Flaw Detection</h3>
-
-      <p>
-        Detect IDOR and BOLA vulnerabilities across APIs,
-        parameterized requests, and session flows.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <h3>Endpoint Intelligence</h3>
-
-      <p>
-        Discover, map, and analyze hidden attack surfaces
-        and exposed application endpoints.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <h3>Replay Analysis</h3>
-
-      <p>
-        Validate responses, compare payload behavior,
-        and detect anomaly patterns automatically.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <h3>Exploit Validation</h3>
-
-      <p>
-        Verify whether detected vulnerabilities are exploitable
-        through intelligent payload execution workflows.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <h3>Payload Generation</h3>
-
-      <p>
-        Generate contextual payloads for XSS, SQLi,
-        redirects, SSRF, and parameter manipulation.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <h3>AI Guided Research</h3>
-
-      <p>
-        Receive automated attack path insights
-        and vulnerability recommendations.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- PRICING -->
-
-<section class="section">
-
-  <h1 class="section-title">
-    Pricing
-  </h1>
-
-  <p class="section-sub">
-    Flexible plans for independent researchers, teams,
-    and enterprise security organizations.
-  </p>
-
-  <div class="pricing">
-
-    <div class="plan">
-
-      <h2>Free</h2>
-
-      <div class="price">
-        $0
       </div>
 
-      <ul>
-        <li>25 scans per month</li>
-        <li>Basic vulnerability analysis</li>
-        <li>Payload generation</li>
-        <li>Community access</li>
-      </ul>
+      <div class="feature-card">
 
-      <button>
-        Start Free
-      </button>
+        <h3>Replay Validation</h3>
 
-    </div>
+        <p>
+          Compare baseline and modified responses with similarity scoring,
+          timing analysis, and AI-assisted anomaly detection.
+        </p>
 
-    <div class="plan">
-
-      <h2>Hunter</h2>
-
-      <div class="price">
-        $19
       </div>
 
-      <ul>
-        <li>500 scans monthly</li>
-        <li>Advanced analysis engine</li>
-        <li>Replay validation</li>
-        <li>Priority processing</li>
-      </ul>
+      <div class="feature-card">
 
-      <button>
-        Upgrade
-      </button>
+        <h3>Endpoint Intelligence</h3>
 
-    </div>
+        <p>
+          Discover hidden API routes, JavaScript endpoints,
+          parameters, and attack surface exposures.
+        </p>
 
-    <div class="plan">
-
-      <h2>Business</h2>
-
-      <div class="price">
-        $49
       </div>
 
-      <ul>
-        <li>Unlimited scans</li>
-        <li>Team dashboards</li>
-        <li>Advanced reporting</li>
-        <li>Threat intelligence</li>
-      </ul>
+      <div class="feature-card">
 
-      <button>
-        Upgrade
-      </button>
+        <h3>Payload Engine</h3>
 
-    </div>
+        <p>
+          Generate advanced payloads for SQLi, XSS, SSRF,
+          authorization bypass, fuzzing, and validation testing.
+        </p>
 
-    <div class="plan">
-
-      <h2>Enterprise</h2>
-
-      <div class="price">
-        Custom
       </div>
 
-      <ul>
-        <li>Private infrastructure</li>
-        <li>Dedicated support</li>
-        <li>Custom integrations</li>
-        <li>Unlimited platform access</li>
-      </ul>
+      <div class="feature-card">
 
-      <button>
-        Contact Sales
-      </button>
+        <h3>AI Research Assistant</h3>
+
+        <p>
+          Use AI-assisted workflows for attack path generation,
+          finding summaries, exploit validation, and scan prioritization.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <h3>Enterprise Reporting</h3>
+
+        <p>
+          Generate executive-ready reports with severity analysis,
+          replay evidence, CVSS scoring, and vulnerability summaries.
+        </p>
+
+      </div>
 
     </div>
 
-  </div>
+  </section>
 
-</section>
+  <section class="pricing" id="pricing">
 
-<!-- CTA -->
+    <h2 class="section-title">
+      Pricing Plans
+    </h2>
 
-<section class="cta">
+    <p class="section-sub">
 
-  <h1>
-    Built For Ethical Hackers
-  </h1>
+      Flexible plans for solo researchers, teams,
+      and enterprise security operations.
 
-  <p>
-    Join BountyScope and modernize your offensive security workflow.
-  </p>
+    </p>
 
-  <button class="primary-btn">
-    Create Free Account
-  </button>
+    <div class="pricing-grid">
 
-</section>
+      <div class="plan">
 
-<!-- FOOTER -->
+        <h3>Free</h3>
 
-<footer class="footer">
+        <div class="price">
+          $0<span>/month</span>
+        </div>
 
-  <h2>
-    BOUNTYSCOPE
-  </h2>
+        <ul>
+          <li>25 scans per month</li>
+          <li>Basic replay analysis</li>
+          <li>CVSS scoring</li>
+          <li>Payload testing</li>
+          <li>Community access</li>
+        </ul>
 
-  <p>
-    AI-Assisted Offensive Security Platform<br><br>
+        <button class="secondary-btn">
+          Start Free
+        </button>
 
-    Built for Ethical Hackers<br>
-    Tool made by Swarm Shield LLC
-  </p>
+      </div>
 
-</footer>
+      <div class="plan popular">
+
+        <h3>Hunter</h3>
+
+        <div class="price">
+          $29<span>/month</span>
+        </div>
+
+        <ul>
+          <li>500 scans per month</li>
+          <li>Advanced replay engine</li>
+          <li>AI-assisted research</li>
+          <li>Attack surface mapping</li>
+          <li>Priority processing</li>
+        </ul>
+
+        <button class="primary-btn">
+          Upgrade
+        </button>
+
+      </div>
+
+      <div class="plan">
+
+        <h3>Business</h3>
+
+        <div class="price">
+          $99<span>/month</span>
+        </div>
+
+        <ul>
+          <li>Unlimited scans</li>
+          <li>Team workspaces</li>
+          <li>Enterprise reporting</li>
+          <li>API access</li>
+          <li>Threat analytics</li>
+        </ul>
+
+        <button class="secondary-btn">
+          Contact Sales
+        </button>
+
+      </div>
+
+      <div class="plan">
+
+        <h3>Enterprise</h3>
+
+        <div class="price">
+          Custom
+        </div>
+
+        <ul>
+          <li>Dedicated infrastructure</li>
+          <li>Private deployments</li>
+          <li>Custom AI models</li>
+          <li>SSO integration</li>
+          <li>Dedicated support</li>
+        </ul>
+
+        <button class="secondary-btn">
+          Request Access
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer class="footer">
+
+    <h4>BOUNTYSCOPE</h4>
+
+    <p>
+
+      AI-Assisted Offensive Security Platform<br />
+
+      Built for Ethical Hackers<br />
+
+      Made by Swarm Shield LLC
+
+    </p>
+
+  </footer>
+
+  <div id="root"></div>
+
+  <script type="module" src="/src/main.jsx"></script>
 
 </body>
+
 </html>
