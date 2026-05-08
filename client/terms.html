@@ -1,0 +1,432 @@
+<!-- client/terms.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>BountyScope Terms of Service</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at top left, rgba(0,119,255,0.12), transparent 30%),
+        #020617;
+      color:white;
+      font-family:"Inter",sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    .grid{
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size:50px 50px;
+      z-index:-1;
+      animation:gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove{
+      0%{
+        transform:translateY(0px);
+      }
+      100%{
+        transform:translateY(50px);
+      }
+    }
+
+    header{
+      padding:30px 8%;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      backdrop-filter:blur(14px);
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(2,6,23,0.75);
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo-box{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      background:
+        linear-gradient(135deg,#0066ff,#00c8ff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:"Orbitron",sans-serif;
+      font-size:24px;
+      font-weight:800;
+      box-shadow:
+        0 0 20px rgba(0,119,255,0.45),
+        0 0 40px rgba(0,200,255,0.2);
+    }
+
+    .logo h1{
+      font-family:"Orbitron",sans-serif;
+      letter-spacing:4px;
+      font-size:28px;
+      font-weight:800;
+    }
+
+    .back{
+      color:#66d9ff;
+      font-size:16px;
+      font-weight:600;
+      text-decoration:none;
+      transition:0.25s ease;
+    }
+
+    .back:hover{
+      color:white;
+      text-shadow:0 0 12px rgba(0,200,255,0.8);
+    }
+
+    .container{
+      max-width:1200px;
+      margin:auto;
+      padding:90px 8%;
+    }
+
+    .hero-title{
+      font-family:"Orbitron",sans-serif;
+      font-size:72px;
+      line-height:1.05;
+      margin-bottom:30px;
+      text-shadow:
+        0 0 20px rgba(0,119,255,0.35);
+    }
+
+    .hero-title span{
+      color:#0077ff;
+    }
+
+    .hero-sub{
+      font-size:22px;
+      line-height:1.9;
+      color:rgba(255,255,255,0.72);
+      margin-bottom:80px;
+      max-width:900px;
+    }
+
+    .section{
+      position:relative;
+      overflow:hidden;
+      margin-bottom:70px;
+      padding:42px;
+      border-radius:26px;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.04),
+          rgba(255,255,255,0.02)
+        );
+      border:1px solid rgba(255,255,255,0.08);
+
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .section::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:2px;
+      background:
+        linear-gradient(
+          90deg,
+          #0077ff,
+          #00c8ff,
+          transparent
+        );
+    }
+
+    .section:hover{
+      transform:translateY(-6px);
+      border-color:rgba(0,200,255,0.35);
+
+      box-shadow:
+        0 0 30px rgba(0,119,255,0.15);
+    }
+
+    .section h2{
+      font-family:"Orbitron",sans-serif;
+      font-size:38px;
+      margin-bottom:28px;
+      color:#00c8ff;
+      letter-spacing:1px;
+    }
+
+    .section p{
+      font-size:21px;
+      line-height:2;
+      color:rgba(255,255,255,0.80);
+      margin-bottom:24px;
+    }
+
+    .section ul{
+      padding-left:28px;
+      margin-top:12px;
+    }
+
+    .section li{
+      font-size:20px;
+      line-height:2;
+      color:rgba(255,255,255,0.76);
+      margin-bottom:12px;
+    }
+
+    footer{
+      padding:80px 8%;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.02),
+          rgba(255,255,255,0.01)
+        );
+    }
+
+    footer h3{
+      font-family:"Orbitron",sans-serif;
+      font-size:30px;
+      margin-bottom:18px;
+      letter-spacing:3px;
+    }
+
+    footer p{
+      color:rgba(255,255,255,0.6);
+      font-size:18px;
+      line-height:1.9;
+    }
+
+    @media(max-width:800px){
+
+      .hero-title{
+        font-size:44px;
+      }
+
+      .hero-sub{
+        font-size:18px;
+      }
+
+      .section{
+        padding:30px;
+      }
+
+      .section h2{
+        font-size:28px;
+      }
+
+      .section p,
+      .section li{
+        font-size:17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="grid"></div>
+
+  <header>
+
+    <div class="logo">
+
+      <div class="logo-box">
+        BS
+      </div>
+
+      <h1>
+        BOUNTYSCOPE
+      </h1>
+
+    </div>
+
+    <a
+      href="/"
+      class="back"
+    >
+      ← Back Home
+    </a>
+
+  </header>
+
+  <div class="container">
+
+    <h1 class="hero-title">
+      Terms <span>of Service</span>
+    </h1>
+
+    <p class="hero-sub">
+      By accessing or using BountyScope,
+      users agree to operate responsibly,
+      ethically,
+      and within all applicable laws
+      governing cybersecurity research
+      and offensive security testing.
+    </p>
+
+    <div class="section">
+
+      <h2>
+        Authorized Usage Only
+      </h2>
+
+      <p>
+        BountyScope is intended strictly
+        for authorized security testing,
+        vulnerability research,
+        bug bounty activities,
+        and defensive cybersecurity operations.
+      </p>
+
+      <p>
+        Users must obtain proper authorization
+        before testing any system,
+        application,
+        API,
+        infrastructure,
+        endpoint,
+        or network target.
+      </p>
+
+    </div>
+
+    <div class="section">
+
+      <h2>
+        User Responsibilities
+      </h2>
+
+      <ul>
+        <li>Comply with all applicable laws and regulations</li>
+        <li>Use the platform ethically and responsibly</li>
+        <li>Protect account credentials and API keys</li>
+        <li>Avoid disruptive or malicious activity</li>
+        <li>Respect responsible disclosure standards</li>
+      </ul>
+
+    </div>
+
+    <div class="section">
+
+      <h2>
+        Prohibited Activities
+      </h2>
+
+      <p>
+        Users may not use BountyScope
+        for unauthorized access,
+        malicious exploitation,
+        credential theft,
+        ransomware operations,
+        denial-of-service attacks,
+        illegal surveillance,
+        or criminal activity.
+      </p>
+
+    </div>
+
+    <div class="section">
+
+      <h2>
+        Platform Availability
+      </h2>
+
+      <p>
+        BountyScope may update,
+        suspend,
+        restrict,
+        or modify platform features
+        at any time to maintain stability,
+        security,
+        and operational integrity.
+      </p>
+
+    </div>
+
+    <div class="section">
+
+      <h2>
+        Limitation of Liability
+      </h2>
+
+      <p>
+        BountyScope and Swarm Shield LLC
+        are not liable for damages,
+        misuse,
+        unauthorized testing,
+        or consequences resulting from
+        improper platform usage.
+      </p>
+
+    </div>
+
+    <div class="section">
+
+      <h2>
+        Contact
+      </h2>
+
+      <p>
+        Questions regarding these Terms
+        may be directed to Swarm Shield LLC.
+      </p>
+
+    </div>
+
+  </div>
+
+  <footer>
+
+    <h3>
+      BOUNTYSCOPE
+    </h3>
+
+    <p>
+      AI-Assisted Offensive Security Platform<br />
+      Built for Ethical Hackers<br />
+      Made by Swarm Shield LLC
+    </p>
+
+  </footer>
+
+</body>
+</html>
