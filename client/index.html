@@ -22,16 +22,19 @@
     content="bug bounty, cybersecurity, offensive security, ethical hacking, vulnerability scanner, AI security"
   />
 
-  <meta name="theme-color" content="#020617" />
+  <meta
+    name="theme-color"
+    content="#020617"
+  />
+
+  <meta property="og:image" content="/logo.png" />
+  <meta name="twitter:image" content="/logo.png" />
 
   <link
     rel="icon"
     type="image/png"
     href="/favicon.png"
   />
-
-  <meta property="og:image" content="/logo.png" />
-  <meta name="twitter:image" content="/logo.png" />
 
   <link
     href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -40,334 +43,312 @@
 
   <style>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html{
+      scroll-behavior:smooth;
     }
 
-    body {
+    body{
 
       background:
-        radial-gradient(circle at top left, rgba(0, 119, 255, 0.15), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(0, 255, 170, 0.08), transparent 30%),
+        radial-gradient(circle at top left, rgba(0,119,255,0.15), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(0,255,170,0.08), transparent 30%),
         #020617;
 
-      color: white;
+      color:white;
 
-      font-family: "Inter", sans-serif;
+      font-family:"Inter",sans-serif;
 
-      overflow-x: hidden;
+      overflow-x:hidden;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    a{
+      text-decoration:none;
+      color:inherit;
     }
 
-    button {
-      cursor: pointer;
-      border: none;
-      outline: none;
-      transition: 0.25s ease;
-    }
+    .grid-bg{
 
-    .grid-bg {
+      position:fixed;
 
-      position: fixed;
-
-      inset: 0;
+      inset:0;
 
       background-image:
         linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
 
-      background-size: 50px 50px;
+      background-size:50px 50px;
 
-      z-index: -2;
+      z-index:-2;
     }
 
-    .glow {
+    .glow{
 
-      position: fixed;
+      position:fixed;
 
-      width: 700px;
-      height: 700px;
+      width:700px;
+      height:700px;
 
       background:
         radial-gradient(circle, rgba(0,119,255,0.12), transparent 70%);
 
-      top: -250px;
-      right: -200px;
+      top:-250px;
+      right:-200px;
 
-      z-index: -1;
+      z-index:-1;
     }
 
-    header {
+    header{
 
-      width: 100%;
+      width:100%;
 
-      padding: 28px 8%;
+      padding:28px 8%;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
 
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom:1px solid rgba(255,255,255,0.08);
 
-      position: sticky;
-      top: 0;
+      position:sticky;
+      top:0;
 
-      backdrop-filter: blur(16px);
+      backdrop-filter:blur(16px);
 
-      background: rgba(2, 6, 23, 0.82);
+      background:rgba(2,6,23,0.82);
 
-      z-index: 999;
+      z-index:999;
     }
 
-    .logo {
+    .logo{
 
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      display:flex;
+      align-items:center;
+      gap:16px;
     }
 
-    .logo-icon {
+    .logo-icon{
 
-      width: 58px;
-      height: 58px;
+      width:58px;
+      height:58px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
-    .logo-icon img {
+    .logo-icon img{
 
-      width: 100%;
-      height: 100%;
+      width:100%;
+      height:100%;
 
-      object-fit: contain;
+      object-fit:contain;
 
       filter:
         drop-shadow(0 0 18px rgba(0,119,255,0.45));
     }
 
-    .logo h1 {
+    .logo h1{
 
-      font-family: "Orbitron", sans-serif;
+      font-family:"Orbitron",sans-serif;
 
-      font-size: 30px;
+      font-size:30px;
 
-      letter-spacing: 5px;
+      letter-spacing:5px;
     }
 
-    nav {
+    nav{
 
-      display: flex;
-      align-items: center;
-      gap: 36px;
+      display:flex;
+      align-items:center;
+      gap:36px;
     }
 
-    nav a {
+    nav a{
 
-      color: rgba(255,255,255,0.82);
+      color:rgba(255,255,255,0.82);
 
-      font-size: 16px;
-      font-weight: 500;
+      font-size:16px;
+      font-weight:500;
     }
 
-    nav a:hover {
-      color: #00c8ff;
+    nav a:hover{
+      color:#00c8ff;
     }
 
-    .hero {
+    .hero{
 
-      width: 100%;
+      width:100%;
 
-      min-height: 100vh;
+      min-height:100vh;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
 
-      padding: 120px 8%;
-      gap: 60px;
+      padding:120px 8%;
+      gap:60px;
     }
 
-    .hero-left {
-      max-width: 760px;
+    .hero-left{
+      max-width:760px;
     }
 
-    .hero-tag {
+    .hero-tag{
 
-      display: inline-block;
+      display:inline-block;
 
-      margin-bottom: 24px;
+      margin-bottom:24px;
 
-      padding: 10px 18px;
+      padding:10px 18px;
 
-      border-radius: 999px;
+      border-radius:999px;
 
-      background: rgba(0,119,255,0.12);
+      background:rgba(0,119,255,0.12);
 
-      border: 1px solid rgba(0,119,255,0.35);
+      border:1px solid rgba(0,119,255,0.35);
 
-      color: #66d9ff;
+      color:#66d9ff;
 
-      font-size: 14px;
-      font-weight: 600;
+      font-size:14px;
+      font-weight:600;
 
-      letter-spacing: 1px;
+      letter-spacing:1px;
     }
 
-    .hero h2 {
+    .hero h2{
 
-      font-family: "Orbitron", sans-serif;
+      font-family:"Orbitron",sans-serif;
 
-      font-size: 82px;
+      font-size:82px;
 
-      line-height: 1.04;
+      line-height:1.04;
 
-      margin-bottom: 32px;
+      margin-bottom:32px;
 
-      letter-spacing: 2px;
+      letter-spacing:2px;
     }
 
-    .hero h2 span {
-      color: #0077ff;
+    .hero h2 span{
+      color:#0077ff;
     }
 
-    .hero p {
+    .hero p{
 
-      font-size: 22px;
+      font-size:22px;
 
-      line-height: 1.8;
+      line-height:1.8;
 
-      color: rgba(255,255,255,0.72);
+      color:rgba(255,255,255,0.72);
 
-      margin-bottom: 42px;
+      margin-bottom:42px;
     }
 
-    .hero-buttons {
+    .hero-buttons{
 
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
     }
 
-    .primary-btn {
+    .primary-btn{
 
-      padding: 18px 34px;
+      padding:18px 34px;
 
-      border-radius: 14px;
+      border-radius:14px;
 
       background:
-        linear-gradient(135deg, #0066ff, #00c8ff);
+        linear-gradient(135deg,#0066ff,#00c8ff);
 
-      color: white;
+      color:white;
 
-      font-size: 17px;
-      font-weight: 700;
+      font-size:17px;
+      font-weight:700;
+
+      border:none;
 
       box-shadow:
         0 0 30px rgba(0,119,255,0.4);
     }
 
-    .primary-btn:hover {
+    .secondary-btn{
 
-      transform: translateY(-3px);
+      padding:18px 34px;
 
-      box-shadow:
-        0 0 45px rgba(0,119,255,0.6);
+      border-radius:14px;
+
+      border:1px solid rgba(255,255,255,0.14);
+
+      background:rgba(255,255,255,0.04);
+
+      color:white;
+
+      font-size:17px;
+      font-weight:700;
     }
 
-    .secondary-btn {
+    .hero-right{
 
-      padding: 18px 34px;
+      flex:1;
 
-      border-radius: 14px;
-
-      border: 1px solid rgba(255,255,255,0.14);
-
-      background: rgba(255,255,255,0.04);
-
-      color: white;
-
-      font-size: 17px;
-      font-weight: 700;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
-    .secondary-btn:hover {
+    .radar{
 
-      border-color: #0077ff;
+      width:480px;
+      height:480px;
 
-      background: rgba(0,119,255,0.08);
-    }
+      border-radius:50%;
 
-    .hero-right {
+      border:2px solid rgba(0,119,255,0.28);
 
-      flex: 1;
+      position:relative;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .radar {
-
-      width: 480px;
-      height: 480px;
-
-      border-radius: 50%;
-
-      border: 2px solid rgba(0,119,255,0.28);
-
-      position: relative;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      animation: pulse 4s infinite ease-in-out;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
     .radar::before,
-    .radar::after {
+    .radar::after{
 
-      content: "";
+      content:"";
 
-      position: absolute;
+      position:absolute;
 
-      border-radius: 50%;
+      border-radius:50%;
 
-      border: 1px solid rgba(0,119,255,0.18);
+      border:1px solid rgba(0,119,255,0.18);
     }
 
-    .radar::before {
-      width: 360px;
-      height: 360px;
+    .radar::before{
+      width:360px;
+      height:360px;
     }
 
-    .radar::after {
-      width: 240px;
-      height: 240px;
+    .radar::after{
+      width:240px;
+      height:240px;
     }
 
-    .radar-logo {
+    .radar-logo{
 
-      width: 220px;
-      height: 220px;
+      width:220px;
+      height:220px;
 
-      border-radius: 40px;
+      border-radius:40px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
 
       background:
         radial-gradient(
@@ -376,36 +357,154 @@
           rgba(255,255,255,0.01)
         );
 
-      border: 1px solid rgba(0,119,255,0.25);
+      border:1px solid rgba(0,119,255,0.25);
 
       box-shadow:
         0 0 60px rgba(0,119,255,0.22);
     }
 
-    .radar-logo img {
+    .radar-logo img{
 
-      width: 100%;
-      height: 100%;
+      width:100%;
+      height:100%;
 
-      object-fit: contain;
+      object-fit:contain;
 
       filter:
         drop-shadow(0 0 24px rgba(0,119,255,0.45));
     }
 
-    @keyframes pulse {
+    .features,
+    .pricing{
 
-      0% {
-        transform: scale(1);
-      }
+      padding:120px 8%;
+    }
 
-      50% {
-        transform: scale(1.03);
-      }
+    .section-title{
 
-      100% {
-        transform: scale(1);
-      }
+      font-family:"Orbitron",sans-serif;
+
+      font-size:54px;
+
+      margin-bottom:24px;
+    }
+
+    .section-sub{
+
+      color:rgba(255,255,255,0.65);
+
+      font-size:20px;
+
+      line-height:1.8;
+
+      max-width:900px;
+
+      margin-bottom:60px;
+    }
+
+    .feature-grid,
+    .pricing-grid{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
+
+      gap:28px;
+    }
+
+    .feature-card,
+    .plan{
+
+      padding:34px;
+
+      border-radius:24px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.04),
+          rgba(255,255,255,0.02)
+        );
+
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-card h3,
+    .plan h3{
+
+      font-size:28px;
+
+      margin-bottom:18px;
+
+      color:#00c8ff;
+    }
+
+    .feature-card p,
+    .plan ul li{
+
+      color:rgba(255,255,255,0.72);
+
+      line-height:1.8;
+
+      font-size:17px;
+    }
+
+    .price{
+
+      font-size:58px;
+      font-weight:800;
+
+      margin-bottom:30px;
+
+      color:#00c8ff;
+    }
+
+    .price span{
+
+      font-size:18px;
+
+      color:rgba(255,255,255,0.55);
+    }
+
+    .plan ul{
+
+      list-style:none;
+
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+
+      margin-bottom:40px;
+    }
+
+    footer{
+
+      padding:70px 8%;
+
+      border-top:1px solid rgba(255,255,255,0.08);
+
+      margin-top:120px;
+
+      text-align:center;
+    }
+
+    footer h4{
+
+      font-family:"Orbitron",sans-serif;
+
+      font-size:30px;
+
+      margin-bottom:20px;
+    }
+
+    footer p{
+
+      color:rgba(255,255,255,0.62);
+
+      font-size:18px;
+
+      line-height:1.8;
     }
 
   </style>
@@ -505,9 +604,226 @@
 
   </section>
 
+  <section class="features" id="features">
+
+    <h2 class="section-title">
+      Offensive Security Platform
+    </h2>
+
+    <p class="section-sub">
+
+      Built for modern vulnerability research,
+      replay validation,
+      exploit analysis,
+      endpoint intelligence,
+      and AI-guided offensive workflows.
+
+    </p>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+
+        <h3>AuthZ Flaw Detection</h3>
+
+        <p>
+          Detect IDOR and BOLA vulnerabilities using replay analysis,
+          parameter mutation, and response fingerprinting.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <h3>Replay Validation</h3>
+
+        <p>
+          Compare baseline and modified responses with anomaly scoring,
+          timing analysis, and replay intelligence.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <h3>Endpoint Intelligence</h3>
+
+        <p>
+          Discover hidden APIs, JavaScript endpoints,
+          parameters, and attack surface exposures.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <h3>Payload Engine</h3>
+
+        <p>
+          Generate advanced payloads for SQLi, XSS, SSRF,
+          authorization bypass, and fuzz testing.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <h3>AI Research Assistant</h3>
+
+        <p>
+          AI-assisted workflows for vulnerability analysis,
+          replay validation, and exploit path generation.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <h3>Enterprise Reporting</h3>
+
+        <p>
+          Generate executive-ready reports with replay evidence,
+          severity scoring, and vulnerability summaries.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="pricing" id="pricing">
+
+    <h2 class="section-title">
+      Pricing Plans
+    </h2>
+
+    <p class="section-sub">
+
+      Flexible plans for independent researchers,
+      offensive security teams,
+      and enterprise environments.
+
+    </p>
+
+    <div class="pricing-grid">
+
+      <div class="plan">
+
+        <h3>Free</h3>
+
+        <div class="price">
+          $0<span>/month</span>
+        </div>
+
+        <ul>
+          <li>25 scans per month</li>
+          <li>Basic replay analysis</li>
+          <li>Payload testing</li>
+          <li>CVSS scoring</li>
+          <li>Community access</li>
+        </ul>
+
+        <button class="secondary-btn">
+          Start Free
+        </button>
+
+      </div>
+
+      <div class="plan">
+
+        <h3>Hunter</h3>
+
+        <div class="price">
+          $29<span>/month</span>
+        </div>
+
+        <ul>
+          <li>500 scans per month</li>
+          <li>Advanced replay engine</li>
+          <li>AI-assisted findings</li>
+          <li>Endpoint intelligence</li>
+          <li>Priority processing</li>
+        </ul>
+
+        <button class="primary-btn">
+          Upgrade
+        </button>
+
+      </div>
+
+      <div class="plan">
+
+        <h3>Business</h3>
+
+        <div class="price">
+          $99<span>/month</span>
+        </div>
+
+        <ul>
+          <li>Unlimited scans</li>
+          <li>Team workspaces</li>
+          <li>Enterprise reporting</li>
+          <li>API access</li>
+          <li>Threat analytics</li>
+        </ul>
+
+        <button class="secondary-btn">
+          Contact Sales
+        </button>
+
+      </div>
+
+      <div class="plan">
+
+        <h3>Enterprise</h3>
+
+        <div class="price">
+          Custom
+        </div>
+
+        <ul>
+          <li>Dedicated infrastructure</li>
+          <li>Private deployment</li>
+          <li>Custom AI models</li>
+          <li>SSO integration</li>
+          <li>Dedicated support</li>
+        </ul>
+
+        <button class="secondary-btn">
+          Request Access
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+
+    <h4>
+      BOUNTYSCOPE
+    </h4>
+
+    <p>
+
+      AI-Assisted Offensive Security Platform<br />
+
+      Built for Ethical Hackers<br />
+
+      Made by Swarm Shield LLC
+
+    </p>
+
+  </footer>
+
   <div id="root"></div>
 
-  <script type="module" src="/src/main.jsx"></script>
+  <script
+    type="module"
+    src="/src/main.jsx"
+  ></script>
 
 </body>
 
